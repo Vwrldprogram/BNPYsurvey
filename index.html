@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Share Your Experience</title>
+
+  <style>
+
+    /* =========================
+       BASIC SETTINGS
+    ========================== */
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --text: #172033;
+      --muted: #64748b;
+      --background: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+
+    /* =========================
+       INTRODUCTION SECTION
+    ========================== */
+
+    .hero {
+      min-height: 80vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 80px 0;
+
+      background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f8fafc 100%
+      );
+    }
+
+    .hero-content {
+      max-width: 720px;
+      margin: auto;
+    }
+
+    .badge {
+      display: inline-block;
+
+      background: #eff6ff;
+      color: var(--primary);
+
+      padding: 8px 15px;
+
+      border-radius: 50px;
+
+      font-size: 14px;
+      font-weight: bold;
+
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 68px);
+
+      line-height: 1.1;
+
+      letter-spacing: -2px;
+
+      margin: 0 0 24px;
+    }
+
+    .hero-description {
+      font-size: 18px;
+
+      color: var(--muted);
+
+      max-width: 650px;
+
+      margin: 0 auto 16px;
+    }
+
+    .security-note {
+      font-size: 14px;
+
+      color: var(--muted);
+
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================== */
+
+    .btn {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      min-height: 52px;
+
+      padding: 0 26px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      background: var(--primary);
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+
+      box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================== */
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      text-align: center;
+
+      max-width: 700px;
+
+      margin: 0 auto 35px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(30px, 5vw, 44px);
+
+      line-height: 1.2;
+
+      margin: 0 0 15px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+
+      margin: 0;
+
+      font-size: 16px;
+    }
+
+
+    /* =========================
+       GOOGLE FORM
+    ========================== */
+
+    .form-card {
+      background: var(--white);
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.06);
+    }
+
+    .google-form {
+      display: block;
+
+      width: 100%;
+
+      /*
+        Your Google Form is 1692px tall.
+        This gives it enough space on desktop
+        and mobile.
+      */
+
+      height: 1692px;
+
+      border: none;
+    }
+
+
+    /* =========================
+       CONFIRMATION SECTION
+    ========================== */
+
+    .confirmation-section {
+      background: #ffffff;
+    }
+
+    .confirmation-card {
+      max-width: 650px;
+
+      margin: 0 auto;
+
+      padding: 45px;
+
+      text-align: center;
+
+      background: white;
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.06);
+    }
+
+    .confirmation-card h2 {
+      font-size: 34px;
+
+      line-height: 1.2;
+
+      margin: 0 0 15px;
+    }
+
+    .confirmation-card p {
+      color: var(--muted);
+
+      margin-bottom: 25px;
+    }
+
+
+    /* =========================
+       NAME INPUT
+    ========================== */
+
+    .name-label {
+      display: block;
+
+      text-align: left;
+
+      font-weight: bold;
+
+      margin-bottom: 8px;
+    }
+
+    .name-input {
+      width: 100%;
+
+      height: 52px;
+
+      padding: 0 15px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 10px;
+
+      font-size: 16px;
+
+      outline: none;
+
+      margin-bottom: 15px;
+    }
+
+    .name-input:focus {
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+
+    /* =========================
+       ERROR MESSAGE
+    ========================== */
+
+    .error-message {
+      display: none;
+
+      color: #dc2626;
+
+      font-size: 14px;
+
+      margin-bottom: 15px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      text-align: center;
+
+      padding: 35px 15px;
+
+      color: var(--muted);
+
+      background: #ffffff;
+
+      border-top: 1px solid var(--border);
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: calc(100% - 22px);
+      }
+
+      .hero {
+        min-height: 75vh;
+
+        padding: 60px 0;
+      }
+
+      h1 {
+        font-size: 42px;
+
+        letter-spacing: -1.5px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      /*
+        Google Forms does not automatically resize
+        its cross-origin iframe height, so we keep
+        enough vertical space for your long form.
+      */
+
+      .google-form {
+        height: 1692px;
+      }
+
+      .confirmation-card {
+        padding: 30px 20px;
+      }
+
+      .confirmation-card h2 {
+        font-size: 28px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- ==================================================
+       1. INTRODUCTION
+  ================================================== -->
+
+  <section class="hero" id="introduction">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="badge">
+          We Value Your Feedback
+        </div>
+
+
+        <h1>
+          Help Us By Sharing Your Opinion
+        </h1>
+
+
+        <p class="hero-description">
+
+          We'd love to hear from you. Please take a few minutes
+          to complete this short survey. Your feedback will help
+          us better understand your Opinion and improve what we offer you.
+
+        </p>
+
+
+        <p class="security-note">
+
+          Your responses are submitted securely through Google Forms.
+
+        </p>
+
+
+        <a
+          href="#survey"
+          class="btn">
+
+          Start Survey
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==================================================
+       2. GOOGLE FORM SECTION
+  ================================================== -->
+
+  <section
+    class="section"
+    id="survey">
+
+    <div class="container">
+
+
+      <div class="section-header">
+
+        <h2>
+          Complete the Survey
+        </h2>
+
+
+        <p>
+
+          Please complete all the questions in the form below.
+          Once you have submitted your response, use the
+          confirmation button below to let us know.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="form-card">
+
+
+        <!-- ==================================================
+             YOUR GOOGLE FORM
+        ==================================================
+
+        Google Form provided:
+
+        https://docs.google.com/forms/d/e/
+        1FAIpQLSf8GdMgYjdzUu63odoX79NbrpEnZj-UNTGxCD6KsqApI_J_QQ
+        /viewform?embedded=true
+
+        ================================================== -->
+
+
+        <iframe
+
+          class="google-form"
+
+          src="https://docs.google.com/forms/d/e/1FAIpQLSf8GdMgYjdzUu63odoX79NbrpEnZj-UNTGxCD6KsqApI_J_QQ/viewform?embedded=true"
+
+          title="Survey Form"
+
+          frameborder="0"
+
+          marginheight="0"
+
+          marginwidth="0"
+
+          loading="lazy">
+
+          Loading…
+
+        </iframe>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==================================================
+       3. CONFIRMATION / WHATSAPP SECTION
+  ================================================== -->
+
+  <section
+    class="section confirmation-section"
+    id="confirmation">
+
+
+    <div class="container">
+
+
+      <div class="confirmation-card">
+
+
+        <h2>
+
+          Have You Submitted Your Response?
+
+        </h2>
+
+
+        <p>
+
+          Once you have successfully submitted the Google Form,
+          enter your name below and click the button to send us
+          a quick confirmation message.
+
+        </p>
+
+
+
+        <label
+          for="name"
+          class="name-label">
+
+          Your Name
+
+        </label>
+
+
+
+        <input
+
+          type="text"
+
+          id="name"
+
+          class="name-input"
+
+          placeholder="Enter your name"
+
+          autocomplete="name">
+
+
+
+        <div
+          id="errorMessage"
+          class="error-message">
+
+          Please enter your name before continuing.
+
+        </div>
+
+
+
+        <button
+
+          type="button"
+
+          class="btn"
+
+          id="whatsappButton">
+
+          I've Submitted the Survey
+
+        </button>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==================================================
+       FOOTER
+  ================================================== -->
+
+  <footer>
+
+    Thank you for taking the time to share your feedback.
+
+    <br><br>
+
+    © <span id="year"></span>
+
+  </footer>
+
+
+
+  <!-- ==================================================
+       JAVASCRIPT
+  ================================================== -->
+
+  <script>
+
+
+    /*
+    ====================================================
+    WHATSAPP SETTINGS
+    ====================================================
+
+    Your number:
+
+    08144154390
+
+    Converted to international format:
+
+    2348144154390
+
+    ====================================================
+    */
+
+    const whatsappNumber = "2348144154390";
+
+
+
+    /*
+    ====================================================
+    GET PAGE ELEMENTS
+    ====================================================
+    */
+
+    const nameInput =
+      document.getElementById("name");
+
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+
+    const whatsappButton =
+      document.getElementById("whatsappButton");
+
+
+
+    /*
+    ====================================================
+    WHATSAPP BUTTON
+    ====================================================
+    */
+
+    whatsappButton.addEventListener(
+      "click",
+      function () {
+
+
+        /*
+        Get the person's name
+        */
+
+        const name =
+          nameInput.value.trim();
+
+
+
+        /*
+        Make sure a name was entered
+        */
+
+        if (name === "") {
+
+          errorMessage.style.display =
+            "block";
+
+          nameInput.focus();
+
+          return;
+
+        }
+
+
+
+        /*
+        Hide the error
+        */
+
+        errorMessage.style.display =
+          "none";
+
+
+
+        /*
+        Create the WhatsApp message
+        */
+
+        const message =
+          `Hello, I have submitted my response to the survey. My name is ${name}.`;
+
+
+
+        /*
+        Convert message into URL format
+        */
+
+        const encodedMessage =
+          encodeURIComponent(message);
+
+
+
+        /*
+        Create WhatsApp URL
+        */
+
+        const whatsappURL =
+          `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+
+
+        /*
+        Open WhatsApp
+        */
+
+        window.open(
+          whatsappURL,
+          "_blank"
+        );
+
+      }
+    );
+
+
+
+    /*
+    ====================================================
+    REMOVE ERROR WHEN USER TYPES
+    ====================================================
+    */
+
+    nameInput.addEventListener(
+      "input",
+      function () {
+
+        if (
+          nameInput.value.trim() !== ""
+        ) {
+
+          errorMessage.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+
+
+    /*
+    ====================================================
+    CURRENT YEAR
+    ====================================================
+    */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+  </script>
+
+
+</body>
+
+</html>
